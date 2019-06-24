@@ -1,8 +1,8 @@
 <div class="game">
-  {{#each model as |row|}}
+  {{#each grid as |row|}}
     <div class="row">
       {{#each row as |cell|}}
-        <div class="cell {{if (and cell.displayValue (and currentlySelectedCell.displayValue (eq cell.value currentlySelectedCell.displayValue))) "same-value"}} {{if cell.given "given"}} {{if cell.selected "selected"}}" {{action "select" cell}}>
+        <div class="cell {{if cell.error "error"}} {{if (and cell.displayValue (and currentlySelectedCell.displayValue (eq cell.value currentlySelectedCell.displayValue))) "same-value"}} {{if cell.given "given"}} {{if cell.selected "selected"}}" {{action "select" cell}}>
           {{# if cell.displayValue}}
             <div class="guess">
               {{cell.displayValue}}

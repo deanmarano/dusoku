@@ -1,16 +1,21 @@
-import EmberObject from '@ember/object';
-import { computed } from "@ember/object";
+import { computed }  from '@ember/object';
 
-export default EmberObject.extend({
-  init() {
-    this.hints = [];
-  },
+export default class SudokuCell {
+  hints = [];
 
-  displayValue: computed('given', 'guess', function() {
+  constructor({row, column, value, given}) {
+    this.row = row;
+    this.column = column;
+    this.value = value;
+    this.given = given;
+  }
+
+  @computed('given', 'guess')
+  get displayValue() {
     if(this.given) {
       return this.value;
     } else {
       return this.guess;
     }
-  })
-});
+  }
+}

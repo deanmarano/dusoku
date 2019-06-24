@@ -1,4 +1,5 @@
 import Route from "@ember/routing/route";
+import SudokuCell from "dusoku/models/sudoku-cell";
 
 export default class extends Route {
   async model({ id }) {
@@ -17,7 +18,21 @@ export default class extends Route {
     model.given = model.given.replace(/b/g,"00000");
     model.given = model.given.replace(/a/g,"000000");
 
-    controller.setProperties(model);
+
+    let board = [];
+    for(let i = 0; i < 9; i++) {
+      board[i] = board[i] || [];
+      for(let j = 0; j < 9; j++) {
+        let index = i * 9 + j;
+        board[i][j] = new SudokuCell({
+          row: i,
+          column: j,
+          value: parseInt(model.solution[index], 10),
+          given: model.given[index] !== "0"
+        });
+      }
+    }
+    controller.set("grid", board);
   }
 }
 

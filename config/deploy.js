@@ -7,6 +7,12 @@ module.exports = function(deployTarget) {
     // include other plugin configuration that applies to all deploy targets here
   };
 
+  ENV['surge'] = {
+    domain: 'https://dusoku.surge.sh',
+    project: 'tmp/deploy-dist/' // this is the default, matching ember-cli-deploy-build
+  }
+
+
   if (deployTarget === 'development') {
     ENV.build.environment = 'development';
     // configure other plugins for development deploy target here

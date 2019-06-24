@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { computed, set } from '@ember/object';
+import { set } from '@ember/object';
 
 export default Component.extend({
   currentlySelectedCell: null,
@@ -8,16 +8,16 @@ export default Component.extend({
       let nextCell;
       switch(direction) {
         case "down":
-          nextCell = this.model[this.currentlySelectedCell.row + 1].findBy('column', this.currentlySelectedCell.column);
+          nextCell = this.grid[this.currentlySelectedCell.row + 1].findBy('column', this.currentlySelectedCell.column);
           break;
         case "up":
-          nextCell = this.model[this.currentlySelectedCell.row - 1].findBy('column', this.currentlySelectedCell.column);
+          nextCell = this.grid[this.currentlySelectedCell.row - 1].findBy('column', this.currentlySelectedCell.column);
           break;
         case "left":
-          nextCell = this.model[this.currentlySelectedCell.row].findBy('column', this.currentlySelectedCell.column - 1);
+          nextCell = this.grid[this.currentlySelectedCell.row].findBy('column', this.currentlySelectedCell.column - 1);
           break;
         case "right":
-          nextCell = this.model[this.currentlySelectedCell.row].findBy('column', this.currentlySelectedCell.column + 1);
+          nextCell = this.grid[this.currentlySelectedCell.row].findBy('column', this.currentlySelectedCell.column + 1);
           break;
 
       }
@@ -79,7 +79,7 @@ export default Component.extend({
     },
 
     checkPuzzle() {
-      for(let row in this.model) {
+      for(let row in this.grid) {
         for(let cell in row) {
           if(cell.value != cell.displayValue) {
             set('cell', 'error', true);
