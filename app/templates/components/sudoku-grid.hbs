@@ -1,0 +1,79 @@
+<div class="game">
+  {{#each model as |row|}}
+    <div class="row">
+      {{#each row as |cell|}}
+        <div class="cell {{if (and cell.displayValue (and currentlySelectedCell.displayValue (eq cell.value currentlySelectedCell.displayValue))) "same-value"}} {{if cell.given "given"}} {{if cell.selected "selected"}}" {{action "select" cell}}>
+          {{# if cell.displayValue}}
+            <div class="guess">
+              {{cell.displayValue}}
+            </div>
+          {{else}}
+            <div class="hints">
+              <div class="hint-row">
+                <span class={{if (array-contains cell.hints 1) "shown"}}>1</span>
+                <span class={{if (array-contains cell.hints 2) "shown"}}>2</span>
+                <span class={{if (array-contains cell.hints 3) "shown"}}>3</span>
+              </div>
+              <div class="hint-row">
+                <span class={{if (array-contains cell.hints 4) "shown"}}>4</span>
+                <span class={{if (array-contains cell.hints 5) "shown"}}>5</span>
+                <span class={{if (array-contains cell.hints 6) "shown"}}>6</span>
+              </div>
+              <div class="hint-row">
+                <span class={{if (array-contains cell.hints 7) "shown"}}>7</span>
+                <span class={{if (array-contains cell.hints 8) "shown"}}>8</span>
+                <span class={{if (array-contains cell.hints 9) "shown"}}>9</span>
+              </div>
+            </div>
+
+          {{/if}}
+        </div>
+      {{/each}}
+    </div>
+  {{/each}}
+</div>
+
+<div class="buttons">
+  <div class="row">
+    <button {{action "stepBack"}}>back</button>
+    <button {{action "selectNumber" 1}}>1</button>
+    <button {{action "selectNumber" 2}}>2</button>
+    <button {{action "selectNumber" 3}}>3</button>
+    <button {{action "checkPuzzle"}}>Check</button>
+  </div>
+  <div class="row">
+    <button {{action "stepForward"}}>next</button>
+    <button {{action "selectNumber" 4}}>4</button>
+    <button {{action "selectNumber" 5}}>5</button>
+    <button {{action "selectNumber" 6}}>6</button>
+  </div>
+  <div class="row">
+    <button {{action "inverseSelection"}}>inv</button>
+    <button {{action "selectNumber" 7}}>7</button>
+    <button {{action "selectNumber" 8}}>8</button>
+    <button {{action "selectNumber" 9}}>9</button>
+    <button {{action "clearCell"}}>C</button>
+  </div>
+</div>
+
+{{!- Vim directions !}}
+{{keyboard-press key="KeyJ" on-press=(action "moveSelection" "down")}}
+{{keyboard-press key="KeyK" on-press=(action "moveSelection" "up")}}
+{{keyboard-press key="KeyH" on-press=(action "moveSelection" "left")}}
+{{keyboard-press key="KeyL" on-press=(action "moveSelection" "right")}}
+
+{{!- Arrow directions !}}
+{{keyboard-press key="ArrowDown" on-press=(action "moveSelection" "down")}}
+{{keyboard-press key="ArrowUp" on-press=(action "moveSelection" "up")}}
+{{keyboard-press key="ArrowLeft" on-press=(action "moveSelection" "left")}}
+{{keyboard-press key="ArrowRight" on-press=(action "moveSelection" "right")}}
+
+{{keyboard-press key="Digit1" on-press=(action "selectNumber" 1)}}
+{{keyboard-press key="Digit2" on-press=(action "selectNumber" 2)}}
+{{keyboard-press key="Digit3" on-press=(action "selectNumber" 3)}}
+{{keyboard-press key="Digit4" on-press=(action "selectNumber" 4)}}
+{{keyboard-press key="Digit5" on-press=(action "selectNumber" 5)}}
+{{keyboard-press key="Digit6" on-press=(action "selectNumber" 6)}}
+{{keyboard-press key="Digit7" on-press=(action "selectNumber" 7)}}
+{{keyboard-press key="Digit8" on-press=(action "selectNumber" 8)}}
+{{keyboard-press key="Digit9" on-press=(action "selectNumber" 9)}}

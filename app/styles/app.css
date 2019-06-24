@@ -1,0 +1,104 @@
+.game {
+  margin-left: auto;
+  margin-right: auto;
+  width: 468px;
+
+  .row {
+    display: flex;
+
+    .cell {
+      min-width: 12px;
+      border: 2px solid black;
+      font-family: monospace;
+
+      .guess {
+        line-height: 45px;
+        text-align: center;
+        font-size: 24px;
+        min-width: 42px;
+      }
+
+      .hints {
+        min-width: 42px;
+        visibility: hidden;
+
+        .shown {
+          visibility: visible;
+        }
+      }
+
+      &.given {
+        font-weight: bold;
+      }
+
+      &.same-value {
+        background-color: yellow !important;
+      }
+
+      &.selected {
+        background-color: limegreen !important;
+        &.given {
+          font-weight: bold;
+          background-color: red !important;
+        }
+      }
+    }
+  }
+}
+
+.buttons {
+  margin-left: auto;
+  margin-right: auto;
+  width: 320px;
+
+  button {
+    margin: 5px;
+    font-size: 12px;
+    background-color: skyblue;
+    width: 50px;
+    height: 40px;
+  }
+}
+
+.game {
+  .row:nth-child(n) {
+    .cell:nth-child(n+4) {
+      background: white;
+    }
+
+    .cell:nth-child(n+4) {
+      background: lightgrey;
+    }
+
+    .cell:nth-child(n+7) {
+      background: white;
+    }
+  }
+  .row:nth-child(n + 4) {
+    .cell:nth-child(n) {
+      background: lightgrey;
+    }
+
+    .cell:nth-child(n+4) {
+      background: white;
+    }
+
+    .cell:nth-child(n+7) {
+      background: lightgrey;
+    }
+  }
+
+  .row:nth-child(n + 7) {
+    .cell:nth-child(n) {
+      background: white;
+    }
+
+    .cell:nth-child(n+4) {
+      background: lightgrey;
+    }
+
+    .cell:nth-child(n+7) {
+      background: white;
+    }
+  }
+}
