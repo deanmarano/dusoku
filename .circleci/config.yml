@@ -1,0 +1,91 @@
+# .circleci/config.yml
+defaults: &defaults
+  docker:
+    - image: circleci/node:6-browsers
+      environment:
+        JOBS: 2
+  working_directory: ~/gitzoom-web
+
+version: 2
+jobs:
+  checkout_code:
+    <<: *defaults
+    steps:
+      - checkout
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  install_dependencies:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - v1-deps-{{ .Branch }}-
+            - v1-deps-
+      - run:
+          name: Yarn Install
+          command: yarn install --non-interactive
+      - save_cache:
+          key: v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  lint_js:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Lint JS
+          command: yarn run lint:js
+
+  run_tests:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run: echo 'export PATH=~/gitzoom-web/node_modules/.bin:$PATH' >> $BASH_ENV
+      - run:
+          name: Run Tests
+          command: yarn test
+
+  deploy_production:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run: echo 'export PATH=~/gitzoom-web/node_modules/.bin:$PATH' >> $BASH_ENV
+      - run:
+          name: Deploy
+          command: ember deploy production
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - checkout_code
+      - install_dependencies:
+          requires:
+            - checkout_code
+      - lint_js:
+          requires:
+            - install_dependencies
+      - run_tests:
+          requires:
+            - install_dependencies
+      - deploy_production:
+          requires:
+            - lint_js
+            - run_tests
+          filters:
+            branches:
+              only: trunk
