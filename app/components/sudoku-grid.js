@@ -62,6 +62,8 @@ export default Component.extend({
 
     clearCell() {
       this.set('currentlySelectedCell.hints', []);
+      this.set('currentlySelectedCell.guess', null);
+      this.set('currentlySelectedCell.error', null);
     },
 
     inverseSelection() {
@@ -79,10 +81,10 @@ export default Component.extend({
     },
 
     checkPuzzle() {
-      for(let row in this.grid) {
-        for(let cell in row) {
-          if(cell.value != cell.displayValue) {
-            set('cell', 'error', true);
+      for(let row of this.grid) {
+        for(let cell of row) {
+          if(cell.guess && cell.guess != cell.value) {
+            set(cell, 'error', true);
           }
         }
       }
