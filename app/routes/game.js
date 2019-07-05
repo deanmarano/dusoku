@@ -33,6 +33,7 @@ export default class extends Route {
       }
     }
     controller.set("grid", board);
+    controller.set("timer", 0);
   }
 }
 
