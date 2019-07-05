@@ -34,25 +34,21 @@
 </div>
 
 <div class="buttons">
-  <div class="row">
-    <button {{action "stepBack"}}>{{t "components.sudoku-grid.back"}}</button>
-    <button {{action "selectNumber" 1}} disabled={{onesFinished}}>{{t "components.sudoku-grid.1"}}</button>
-    <button {{action "selectNumber" 2}} disabled={{twosFinished}}>{{t "components.sudoku-grid.2"}}</button>
-    <button {{action "selectNumber" 3}} disabled={{threesFinished}}>{{t "components.sudoku-grid.3"}}</button>
-    <button {{action "checkPuzzle"}}>{{t "components.sudoku-grid.check"}}</button>
-  </div>
-  <div class="row">
-    <button {{action "stepForward"}}>{{t "components.sudoku-grid.next"}}</button>
-    <button {{action "selectNumber" 4}} disabled={{foursFinished}}>{{t "components.sudoku-grid.4"}}</button>
-    <button {{action "selectNumber" 5}} disabled={{fivesFinished}}>{{t "components.sudoku-grid.5"}}</button>
-    <button {{action "selectNumber" 6}} disabled={{sixesFinished}}>{{t "components.sudoku-grid.6"}}</button>
+  <div class="row {{if hintMode "hint"}}">
+    <button {{action "selectNumber" 1}}>{{t "components.sudoku-grid.1"}}</button>
+    <button {{action "selectNumber" 2}}>{{t "components.sudoku-grid.2"}}</button>
+    <button {{action "selectNumber" 3}}>{{t "components.sudoku-grid.3"}}</button>
+    <button {{action "selectNumber" 4}}>{{t "components.sudoku-grid.4"}}</button>
+    <button {{action "selectNumber" 5}}>{{t "components.sudoku-grid.5"}}</button>
+    <button {{action "selectNumber" 6}}>{{t "components.sudoku-grid.6"}}</button>
+    <button {{action "selectNumber" 7}}>{{t "components.sudoku-grid.7"}}</button>
+    <button {{action "selectNumber" 8}}>{{t "components.sudoku-grid.8"}}</button>
+    <button {{action "selectNumber" 9}}>{{t "components.sudoku-grid.9"}}</button>
   </div>
   <div class="row">
     <button {{action "inverseSelection"}}>{{t "components.sudoku-grid.invert"}}</button>
-    <button {{action "selectNumber" 7}} disabled={{sevensFinished}}>{{t "components.sudoku-grid.7"}}</button>
-    <button {{action "selectNumber" 8}} disabled={{eightsFinished}}>{{t "components.sudoku-grid.8"}}</button>
-    <button {{action "selectNumber" 9}} disabled={{ninesFinished}}>{{t "components.sudoku-grid.9"}}</button>
     <button {{action "clearCell"}}>{{t "components.sudoku-grid.clear"}}</button>
+    <button {{action "checkPuzzle"}}>{{t "components.sudoku-grid.check"}}</button>
   </div>
 </div>
 

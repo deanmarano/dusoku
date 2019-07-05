@@ -62,14 +62,20 @@
 
   button {
     margin: 5px;
-    font-size: 12px;
+    font-size: 20px;
     background-color: skyblue;
-    width: 50px;
-    height: 40px;
+    width: 22px;
+    height: 30px;
+    padding: 0 4px;
 
     &:disabled {
       background-color: lightgrey;
     }
+
+  }
+
+  .hint button {
+    background-color: lightgrey;
   }
 }
 
