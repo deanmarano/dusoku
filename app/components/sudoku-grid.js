@@ -77,21 +77,18 @@ export default Component.extend({
         return;
       }
 
-      let hints = this.currentlySelectedCell.hints;
-      if(this.currentlySelectedCell.guess) {
-        hints.addObject(this.currentlySelectedCell.guess);
-      }
-
-      if(hints.includes(number)) {
-        this.set('currentlySelectedCell.hints', hints.removeObject(number));
+      if(this.hintMode) {
+        if(this.guess) {
+          this.set('guess', null);
+        }
+        let hints = this.currentlySelectedCell.hints;
+        if(hints.includes(number)) {
+          this.set('currentlySelectedCell.hints', hints.removeObject(number));
+        } else {
+          this.set('currentlySelectedCell.hints', hints.addObject(number));
+        }
       } else {
-        this.set('currentlySelectedCell.hints', hints.addObject(number));
-      }
-      if(hints.length === 1) {
-        this.set('currentlySelectedCell.guess', hints[0]);
-        this.set('currentlySelectedCell.hints', []);
-      } else {
-        this.set('currentlySelectedCell.guess', null);
+        this.set('currentlySelectedCell.guess', number);
       }
       await this.currentlySelectedCell.save();
       if(this.correct) {
@@ -117,6 +114,10 @@ export default Component.extend({
         }
       }
       this.set('currentlySelectedCell.hints', invertedHints);
+    },
+
+    toggleHintMode() {
+      this.toggleProperty('hintMode');
     },
 
     checkPuzzle() {
