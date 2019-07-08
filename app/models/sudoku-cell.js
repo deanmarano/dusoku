@@ -1,9 +1,11 @@
 import { computed }  from '@ember/object';
+import DS from 'ember-data';
+const { Model } = DS;
 
-export default class SudokuCell {
+export default class extends Model {
   hints = [];
 
-  constructor({row, column, value, given}) {
+  init({row, column, value, given}) {
     this.row = row;
     this.column = column;
     this.value = value;
