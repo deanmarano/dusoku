@@ -24,7 +24,7 @@ export default class extends Route {
       board[i] = board[i] || [];
       for(let j = 0; j < 9; j++) {
         let index = i * 9 + j;
-        board[i][j] = new SudokuCell({
+        board[i][j] = SudokuCell.create({
           row: i,
           column: j,
           value: parseInt(model.solution[index], 10),
