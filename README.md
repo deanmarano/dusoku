@@ -1,7 +1,8 @@
 # dusoku
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+A adventure to conquer the game of Sudoku.
+
+https://docs.google.com/spreadsheets/d/1r5zryjOI4MxuXDu5UxdNssyLAYfUpsBXZ1SZ2rzchyI/edit
 
 ## Prerequisites
 
