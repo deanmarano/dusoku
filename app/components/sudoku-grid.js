@@ -3,9 +3,21 @@ import { set, computed } from '@ember/object';
 
 export default Component.extend({
   currentlySelectedCell: null,
-  completed: computed('grid.@each.correct', function() {
-    return this.grid.every(cell => cell.correct);
+  grid: computed("cells.@each", function() {
+    let grid = [];
+    let cells = this.get("cells").toArray();
+    for(let i = 0; i < 9; i++) {
+      grid[i] = grid[i] || [];
+      for(let j = 0; j < 9; j++) {
+        let index = i * 9 + j;
+        grid[i][j] = cells[index];
+      }
+    }
+    window.grid = grid;
+    window.puzzle = this;
+    return grid;
   }),
+
   actions: {
     moveSelection(direction) {
       let nextCell;
