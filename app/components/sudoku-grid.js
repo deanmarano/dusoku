@@ -1,8 +1,11 @@
 import Component from '@ember/component';
-import { set } from '@ember/object';
+import { set, computed } from '@ember/object';
 
 export default Component.extend({
   currentlySelectedCell: null,
+  completed: computed('grid.@each.correct', function() {
+    return this.grid.every(cell => cell.correct);
+  }),
   actions: {
     moveSelection(direction) {
       let nextCell;
@@ -29,7 +32,8 @@ export default Component.extend({
       if(this.currentlySelectedCell) {
         this.set('currentlySelectedCell.selected', false);
       }
-      if(this.get('currentlySelectedCell.value') === cell.value) {
+      // if click again
+      if(this.get('currentlySelectedCell.index') === cell.index) {
         this.set('currentlySelectedCell', null);
       } else {
         this.set('currentlySelectedCell', cell);
@@ -57,6 +61,9 @@ export default Component.extend({
         this.set('currentlySelectedCell.hints', []);
       } else {
         this.set('currentlySelectedCell.guess', null);
+      }
+      if(this.completed) {
+        this.puzzleCompleted();
       }
     },
 

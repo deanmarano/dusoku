@@ -1,9 +1,10 @@
 import { computed }  from '@ember/object';
 import DS from 'ember-data';
-const { Model } = DS;
+const { Model, belongsTo } = DS;
 
 export default class extends Model {
   hints = [];
+  puzzle = belongsTo('puzzle', {asnyc: true, autoSave: true});
 
   init({row, column, value, given}) {
     this.row = row;
@@ -12,12 +13,4 @@ export default class extends Model {
     this.given = given;
   }
 
-  @computed('given', 'guess')
-  get displayValue() {
-    if(this.given) {
-      return this.value;
-    } else {
-      return this.guess;
-    }
-  }
 }

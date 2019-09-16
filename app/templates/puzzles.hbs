@@ -1,0 +1,28 @@
+<button disabled={{refreshing}} {{action "fetchPuzzles"}}>
+  {{#if refreshing}}
+    Refreshing...
+  {{else}}
+    Load Puzzles
+  {{/if}}
+</button>
+<button {{action "reset"}}>
+  Reset Progress
+</button>
+
+<dl>
+  <dt>Total</dt>
+  <dd>{{puzzles.length}}</dd>
+  <dt>Completed</dt>
+  <dd>{{completedPuzzles.length}}</dd>
+</dl>
+
+<ul>
+  {{#each puzzles as |puzzle|}}
+    <li>
+      <input type="checkbox" checked={{puzzle.completedAt}} disabled>
+      {{puzzle.id}}
+      {{puzzle.startedAt}}
+      {{puzzle.completedAt}}
+    </li>
+  {{/each}}
+</ul>
