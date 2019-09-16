@@ -8,31 +8,32 @@ export default Model.extend({
   lastPlayedAt: attr('date'),
   secondsPlayed: attr('number'),
   completedAt: attr('date'),
-  solution: attr(),
-  givens: attr(),
+  solution: attr('string'),
+  givens: attr('string'),
   cells: hasMany('sudoku-cell'), // an array of cells, with each cell containing a list of actions
 
-  correct: computed("grid.@each", function() {
-    return this.grid.every(cell => cell.correct);
+  correct: computed("cells.@each", function() {
+    return this.cells.every(cell => cell.correct);
   }),
 
   start: async function() {
     if(!this.startedAt) {
-      let grid = [];
+      let cells = [];
       for(let i = 0; i < 9; i++) {
-        grid[i] = grid[i] || [];
         for(let j = 0; j < 9; j++) {
           let index = i * 9 + j;
-          grid[i][j] = this.store.createRecord('sudoku-cell', {
+          let cell = this.store.createRecord('sudoku-cell');
+          cell.setProperties({
+            puzzle: this,
             row: i,
             column: j,
             value: parseInt(this.solution[index], 10),
             given: this.givens[index] !== "0"
           });
+          cells.push(cell.save());
         }
       }
-      await all(grid.map(cell => cell.save()));
-      this.set('cells', grid);
+      await all(cells);
       this.set('startedAt', new Date);
     }
     this.set('lastPlayedAt', new Date);

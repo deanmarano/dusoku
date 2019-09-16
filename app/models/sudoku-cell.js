@@ -1,16 +1,31 @@
 import { computed }  from '@ember/object';
 import DS from 'ember-data';
-const { Model, belongsTo } = DS;
+const { attr, Model, belongsTo } = DS;
 
-export default class extends Model {
-  hints = [];
-  puzzle = belongsTo('puzzle', {asnyc: true, autoSave: true});
+export default Model.extend({
+  value: attr('number'),
+  guess: attr('number'),
+  hints: attr(),
+  row: attr(),
+  column: attr(),
+  puzzle: belongsTo('puzzle', {asnyc: true, autoSave: true}),
 
-  init({row, column, value, given}) {
-    this.row = row;
-    this.column = column;
-    this.value = value;
-    this.given = given;
+  displayValue: computed('given', 'guess', function() {
+    if(this.given) {
+      return this.value;
+    } else {
+      return this.guess;
+    }
+  }),
+
+  index: computed('row', 'column', function() {
+    return this.row * this.column;
+  }),
+
+  correct: computed('value', 'guess', function() {
+    return this.value === this.guess;
+  }),
+
+  complete() {
   }
-
-}
+})

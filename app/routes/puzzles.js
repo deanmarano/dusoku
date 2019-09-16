@@ -17,7 +17,8 @@ export default Route.extend({
       let records = boards.starting.map(async (id, index)=> {
         let puzzle = this.store.peekRecord('puzzle', id);
         if(!puzzle) {
-          return this.store.createRecord('puzzle', {
+          let puzzle = this.store.createRecord('puzzle');
+          puzzle.setProperties({
             id: id,
             givens: id.
               replace(/e/g,"00").
@@ -27,17 +28,15 @@ export default Route.extend({
               replace(/a/g,"000000"),
             solution: boards.solutions[index]
           });
+          return puzzle.save();
         }
       });
-      records = await all(records);
-      await all(records.compact().map((record)=> {
-        return record.save();
-      }));
+      await all(records);
       this.toggleProperty("refreshing");
     },
     async reset() {
       let puzzles = await this.store.findAll('puzzle');
-      return all(puzzles.map((puzzle)=> {
+      await all(puzzles.map((puzzle)=> {
         puzzle.setProperties({
           startedAt: null,
           lastPlayedAt: null,
@@ -45,6 +44,10 @@ export default Route.extend({
           completedAt: null
         });
         return puzzle.save();
+      }));
+      let cells = await this.store.findAll('sudoku-cell');
+      await all(cells.map((cell)=> {
+        cell.destroy();
       }));
 
     }
