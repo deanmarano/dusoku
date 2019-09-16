@@ -5,10 +5,16 @@ const { attr, Model, belongsTo } = DS;
 export default Model.extend({
   value: attr('number'),
   guess: attr('number'),
+  given: attr('boolean'),
   hints: attr(),
   row: attr(),
   column: attr(),
   puzzle: belongsTo('puzzle', {asnyc: true, autoSave: true}),
+
+  init() {
+    this._super();
+    this.set('hints', []);
+  },
 
   displayValue: computed('given', 'guess', function() {
     if(this.given) {
@@ -23,9 +29,6 @@ export default Model.extend({
   }),
 
   correct: computed('value', 'guess', function() {
-    return this.value === this.guess;
-  }),
-
-  complete() {
-  }
+    return this.given || this.value === this.guess;
+  })
 })

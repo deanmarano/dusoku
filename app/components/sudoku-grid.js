@@ -1,6 +1,14 @@
 import Component from '@ember/component';
 import { set, computed } from '@ember/object';
 
+function isFinished(number) {
+  return computed('cells.@each.correct', function() {
+    return this.cells.
+      filterBy('value', number).
+      every(cell => cell.correct);
+  });
+}
+
 export default Component.extend({
   currentlySelectedCell: null,
   grid: computed("cells.@each", function() {
@@ -13,13 +21,24 @@ export default Component.extend({
         grid[i][j] = cells[index];
       }
     }
-    window.grid = grid;
-    window.puzzle = this;
     return grid;
   }),
 
+  onesFinished: isFinished(1),
+  twosFinished: isFinished(2),
+  threesFinished: isFinished(3),
+  foursFinished: isFinished(4),
+  fivesFinished: isFinished(5),
+  sixesFinished: isFinished(6),
+  sevensFinished: isFinished(7),
+  eightsFinished: isFinished(8),
+  ninesFinished: isFinished(9),
+
   actions: {
     moveSelection(direction) {
+      if(!this.currentlySelectedCell) {
+        return;
+      }
       let nextCell;
       switch(direction) {
         case "down":
@@ -53,7 +72,7 @@ export default Component.extend({
       }
     },
 
-    selectNumber(number) {
+    async selectNumber(number) {
       if(!this.currentlySelectedCell) {
         return;
       }
@@ -74,7 +93,8 @@ export default Component.extend({
       } else {
         this.set('currentlySelectedCell.guess', null);
       }
-      if(this.completed) {
+      await this.currentlySelectedCell.save();
+      if(this.correct) {
         this.puzzleCompleted();
       }
     },

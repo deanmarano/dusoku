@@ -6,18 +6,18 @@ import { all } from 'rsvp';
 export default Model.extend({
   startedAt: attr('date'),
   lastPlayedAt: attr('date'),
-  secondsPlayed: attr('number'),
+  secondsPlayed: attr('number', {defaultValue: 0}),
   completedAt: attr('date'),
   solution: attr('string'),
   givens: attr('string'),
-  cells: hasMany('sudoku-cell'), // an array of cells, with each cell containing a list of actions
+  cells: hasMany('sudoku-cell', {async: true, dependent: 'destroy'}), // an array of cells, with each cell containing a list of actions
 
-  correct: computed("cells.@each", function() {
+  correct: computed("cells.@each.correct", function() {
     return this.cells.every(cell => cell.correct);
   }),
 
   start: async function() {
-    if(!this.startedAt) {
+    if(!this.startedAt && this.get('cells.length') === 0) {
       let cells = [];
       for(let i = 0; i < 9; i++) {
         for(let j = 0; j < 9; j++) {

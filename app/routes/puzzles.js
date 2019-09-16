@@ -14,7 +14,7 @@ export default Route.extend({
       let response = await fetch("/boards.json");
       let boards = await response.json();
 
-      let records = boards.starting.map(async (id, index)=> {
+      let records = boards.starting.slice(0, 10).map(async (id, index)=> {
         let puzzle = this.store.peekRecord('puzzle', id);
         if(!puzzle) {
           let puzzle = this.store.createRecord('puzzle');
