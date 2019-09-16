@@ -1,1 +1,11 @@
-{{link-to "New Game" "game" 1}}
+{{#if model.nextPuzzle}}
+  {{link-to "New Game" "puzzle" model.nextPuzzle}}
+{{/if}}
+
+{{#if model.currentPuzzle}}
+  {{link-to "Resume Game" "puzzle" model.currentPuzzle}}
+{{/if}}
+
+{{#if model.puzzles.firstObject}}
+  {{link-to "First Game" "puzzle" model.puzzles.firstObject}}
+{{/if}}
