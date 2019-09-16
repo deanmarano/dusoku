@@ -7,7 +7,9 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route("puzzle", { path: "puzzle/:id" });
+  this.route("puzzle", { path: "puzzle/:id" }, function() {
+    this.route("completed");
+  });
   this.route("puzzles", { path: "puzzles" });
 });
 
