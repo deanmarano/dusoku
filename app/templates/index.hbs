@@ -1,11 +1,11 @@
 {{#if model.nextPuzzle}}
-  {{link-to "New Game" "puzzle" model.nextPuzzle}}
+  {{link-to (t "templates.index.new-puzzle") "puzzle" model.nextPuzzle data-test-new-puzzle=true}}
 {{/if}}
 
 {{#if model.currentPuzzle}}
-  {{link-to "Resume Game" "puzzle" model.currentPuzzle}}
+  {{link-to (t "templates.index.resume-puzzle") "puzzle" model.currentPuzzle data-test-resume-puzzle=true}}
 {{/if}}
 
 {{#if model.puzzles.firstObject}}
-  {{link-to "First Game" "puzzle" model.puzzles.firstObject}}
+  {{link-to (t "templates.index.first-puzzle") "puzzle" model.puzzles.firstObject}}
 {{/if}}

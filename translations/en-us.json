@@ -20,6 +20,11 @@
   "templates": {
     "application": {
       "header": "Sudoku"
+    },
+    "index": {
+      "new-puzzle": "New Puzzle",
+      "resume-puzzle": "Resume Puzzle",
+      "first-puzzle": "First Puzzle"
     }
   }
 }
