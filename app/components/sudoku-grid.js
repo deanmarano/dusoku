@@ -11,6 +11,41 @@ function isFinished(number) {
 
 export default Component.extend({
   currentlySelectedCell: null,
+  timer: 0,
+  didInsertElement() {
+    this.set('intervalPid', this.interval());
+    document.addEventListener("visibilitychange", () => {
+      if(document.hidden) {
+        this.pause();
+      } else {
+        this.resume();
+      }
+    }, false);
+  },
+
+  interval() {
+    return setInterval(()=> {
+      this.set('timer', this.timer + 1);
+    }, 1000);
+  },
+
+  pause() {
+    if(this.intervalPid) {
+      clearInterval(this.intervalPid);
+      this.set('intervalPid', null);
+    }
+  },
+
+  resume() {
+    if(!this.intervalPid) {
+      this.set('intervalPid', this.interval());
+    }
+  },
+
+  timeElapsed: computed("timer", function() {
+    return `${Math.floor(this.timer / 60).toString().padStart(2, 0)}:${(this.timer % 60).toString().padStart(2, 0)}`;
+  }),
+
   grid: computed("cells.@each", function() {
     let grid = [];
     let cells = this.get("cells").toArray();
@@ -67,9 +102,6 @@ export default Component.extend({
       // if click again
       if(this.get('currentlySelectedCell.index') === cell.index) {
         this.set('currentlySelectedCell', null);
-      } else {
-        this.set('currentlySelectedCell', cell);
-        this.set('currentlySelectedCell.selected', true);
       }
     },
 
@@ -116,7 +148,6 @@ export default Component.extend({
       }
       this.set('currentlySelectedCell.hints', invertedHints);
     },
-
     toggleHintMode() {
       this.toggleProperty('hintMode');
     },
@@ -129,7 +160,6 @@ export default Component.extend({
           }
         }
       }
-
     }
   }
 });
