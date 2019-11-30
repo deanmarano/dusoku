@@ -1,9 +1,9 @@
-{{link-to (t "templates.index.new-puzzle") "puzzle" "new" data-test-new-puzzle=true}}
+{{paper-link (t "templates.index.new-puzzle") "puzzle" "new" data-test-new-puzzle=true}}
 
 {{#if model.currentPuzzle}}
-  {{link-to (t "templates.index.resume-puzzle") "puzzle" model.currentPuzzle data-test-resume-puzzle=true}}
+  {{paper-link (t "templates.index.resume-puzzle") "puzzle" model.currentPuzzle data-test-resume-puzzle=true}}
 {{/if}}
 
 {{#if model.puzzles.firstObject}}
-  {{link-to (t "templates.index.first-puzzle") "puzzle" model.puzzles.firstObject}}
+  {{paper-link (t "templates.index.first-puzzle") "puzzle" model.puzzles.firstObject}}
 {{/if}}

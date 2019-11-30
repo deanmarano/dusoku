@@ -3,6 +3,7 @@ import { all } from 'rsvp';
 
 export default Service.extend({
   store: service(),
+  loaded: false,
   fetch: async function() {
     let response = await fetch("/boards.json");
     let boards = await response.json();
