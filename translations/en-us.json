@@ -25,6 +25,20 @@
       "new-puzzle": "New Puzzle",
       "resume-puzzle": "Resume Puzzle",
       "first-puzzle": "First Puzzle"
+    },
+    "puzzle": {
+      "completed": {
+        "header": "Completed!",
+        "duration": "Duration",
+        "best-time": "Best"
+      }
+    },
+    "puzzles": {
+      "refreshing": "Refreshing...",
+      "load-puzzles": "Load Puzzles",
+      "reset-progress": "Reset Progress",
+      "total": "Total",
+      "completed": "Completed"
     }
   }
 }

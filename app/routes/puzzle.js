@@ -1,10 +1,17 @@
 import Route from "@ember/routing/route";
 import { storageFor } from 'ember-local-storage';
+import { inject as service } from '@ember/service';
 
 export default Route.extend({
+  puzzles: service(),
   app: storageFor('application-state'),
-  model({ id }) {
-    return this.store.findRecord('puzzle', id);
+  async model({ id }) {
+    if(id === "new") {
+      await this.puzzles.fetch();
+      return this.store.queryRecord('puzzle', {filter: {startedAt: null}});
+    } else {
+      return this.store.findRecord('puzzle', id);
+    }
   },
 
   afterModel(model) {

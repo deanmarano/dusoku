@@ -1,18 +1,18 @@
 <button disabled={{refreshing}} {{action "fetchPuzzles"}}>
   {{#if refreshing}}
-    Refreshing...
+    {{t "templates.puzzles.refreshing"}}
   {{else}}
-    Load Puzzles
+    {{t "templates.puzzles.load-puzzles"}}
   {{/if}}
 </button>
 <button {{action "reset"}}>
-  Reset Progress
+  {{t "templates.puzzles.reset-progress"}}
 </button>
 
 <dl>
-  <dt>Total</dt>
+  <dt> {{t "templates.puzzles.total"}} </dt>
   <dd>{{puzzles.length}}</dd>
-  <dt>Completed</dt>
+  <dt> {{t "templates.puzzles.completed"}} </dt>
   <dd>{{completedPuzzles.length}}</dd>
 </dl>
 

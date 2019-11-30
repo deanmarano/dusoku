@@ -1,6 +1,4 @@
-{{#if model.nextPuzzle}}
-  {{link-to (t "templates.index.new-puzzle") "puzzle" model.nextPuzzle data-test-new-puzzle=true}}
-{{/if}}
+{{link-to (t "templates.index.new-puzzle") "puzzle" "new" data-test-new-puzzle=true}}
 
 {{#if model.currentPuzzle}}
   {{link-to (t "templates.index.resume-puzzle") "puzzle" model.currentPuzzle data-test-resume-puzzle=true}}

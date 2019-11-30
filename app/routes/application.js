@@ -10,7 +10,6 @@ export default Route.extend({
   model() {
     return hash({
       puzzles: this.store.findAll('puzzle'),
-      nextPuzzle: this.store.queryRecord('puzzle', {filter: {startedAt: null}}),
       currentPuzzle: this.currentPuzzleId ? this.store.findRecord('puzzle', this.currentPuzzleId) : null
     });
   },
