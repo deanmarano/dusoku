@@ -5,10 +5,15 @@ import { inject as service } from '@ember/service';
 export default Route.extend({
   puzzles: service(),
   app: storageFor('application-state'),
+  async beforeModel() {
+    if(!this.puzzles.loaded) {
+      await this.puzzles.fetch();
+    }
+  },
   async model({ id }) {
     if(id === "new") {
-      await this.puzzles.fetch();
-      return this.store.queryRecord('puzzle', {filter: {startedAt: null}});
+      let puzzle = await this.store.queryRecord('puzzle', {filter: {startedAt: null}});
+      return this.transitionTo("puzzle", puzzle.id);
     } else {
       return this.store.findRecord('puzzle', id);
     }
