@@ -23,6 +23,7 @@
       "header": "Sudoku"
     },
     "index": {
+      "brand": "Dusoku",
       "new-puzzle": "New Puzzle",
       "resume-puzzle": "Resume Puzzle",
       "first-puzzle": "First Puzzle",
