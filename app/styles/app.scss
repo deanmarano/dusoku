@@ -58,13 +58,12 @@
 .buttons {
   margin-left: auto;
   margin-right: auto;
-  width: 320px;
+  width: 468px;
 
   button {
     margin: 5px;
     font-size: 20px;
-    background-color: skyblue;
-    width: 22px;
+    min-width: 30px;
     height: 30px;
     padding: 0 4px;
 
@@ -80,6 +79,7 @@
 }
 
 .game {
+  margin-top: 10px;
   .row:nth-child(n) {
     .cell:nth-child(n+4) {
       background: white;

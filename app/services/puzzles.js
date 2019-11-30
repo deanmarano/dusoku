@@ -1,8 +1,13 @@
 import Service, { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
 import { all } from 'rsvp';
 
 export default Service.extend({
   store: service(),
+  init() {
+    this._super(arguments);
+    this.set("loaded", isEmpty(this.store.peekAll("puzzle")));
+  },
   loaded: true,
   fetch: async function() {
     let response = await fetch("/boards.json");

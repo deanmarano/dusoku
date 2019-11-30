@@ -11,10 +11,11 @@
       "8": "8",
       "9": "9",
       "invert": "inv",
-      "clear": "C",
+      "clear": "⌫ ",
       "check": "Check",
       "back": "back",
-      "next": "next"
+      "next": "next",
+      "hint-mode": "✏️"
     }
   },
   "templates": {
@@ -27,6 +28,9 @@
       "first-puzzle": "First Puzzle"
     },
     "puzzle": {
+      "index": {
+        "back": "←"
+      },
       "completed": {
         "header": "Completed!",
         "duration": "Duration",
