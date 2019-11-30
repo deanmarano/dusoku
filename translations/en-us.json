@@ -25,7 +25,11 @@
     "index": {
       "new-puzzle": "New Puzzle",
       "resume-puzzle": "Resume Puzzle",
-      "first-puzzle": "First Puzzle"
+      "first-puzzle": "First Puzzle",
+      "daily-challenge": "Daily Challenge",
+      "start-daily-challenge": "Play",
+      "home": "Home",
+      "statistics": "Statistics"
     },
     "puzzle": {
       "index": {

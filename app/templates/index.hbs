@@ -1,9 +1,45 @@
-{{paper-link (t "templates.index.new-puzzle") "puzzle" "new" data-test-new-puzzle=true}}
+<div class="template-index">
+  {{#paper-card class="daily-challenge-card" as |card|}}
+    {{#card.title as |title|}}
+      {{#title.text as |text|}}
+        {{#text.headline}}{{t "templates.index.daily-challenge"}}{{/text.headline}}
+      {{/title.text}}
+    {{/card.title}}
+    {{#card.content}}
+      {{todaysDate}}
+    {{/card.content}}
+    {{#card.actions class="layout-column"}}
+      {{#paper-button}}{{t "templates.index.start-daily-challenge" }}{{/paper-button}}
+    {{/card.actions}}
+  {{/paper-card}}
 
-{{#if model.currentPuzzle}}
-  {{paper-link (t "templates.index.resume-puzzle") "puzzle" model.currentPuzzle data-test-resume-puzzle=true}}
-{{/if}}
+  <div>
+    {{paper-link (t "templates.index.new-puzzle") "puzzle" "new" data-test-new-puzzle=true}}
+  </div>
 
-{{#if model.puzzles.firstObject}}
-  {{paper-link (t "templates.index.first-puzzle") "puzzle" model.puzzles.firstObject}}
-{{/if}}
+  {{#if model.currentPuzzle}}
+    <div>
+      {{paper-link (t "templates.index.resume-puzzle") "puzzle" model.currentPuzzle data-test-resume-puzzle=true}}
+    </div>
+  {{/if}}
+
+  {{#if model.puzzles.firstObject}}
+    <div>
+      {{paper-link (t "templates.index.first-puzzle") "puzzle" model.puzzles.firstObject}}
+    </div>
+  {{/if}}
+
+
+
+  {{#paper-tabs selected=currentRouteName as |tabs|}}
+    {{#tabs.tab value="home" href=(href-to "index")}}
+      {{t "templates.index.home"}}
+    {{/tabs.tab}}
+    {{#tabs.tab value="daily-challenge" href=(href-to "daily-challenge")}}
+      {{t "templates.index.daily-challenge"}}
+    {{/tabs.tab}}
+    {{#tabs.tab value="statistics" href=(href-to "statistics")}}
+      {{t "templates.index.statistics"}}
+    {{/tabs.tab}}
+  {{/paper-tabs}}
+</div>
