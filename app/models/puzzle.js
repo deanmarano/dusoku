@@ -2,6 +2,7 @@ import DS from 'ember-data';
 import { computed } from '@ember/object';
 const { Model, attr, hasMany } = DS;
 import { all } from 'rsvp';
+import { makepuzzle } from "sudoku";
 
 export default Model.extend({
   startedAt: attr('date'),
@@ -12,9 +13,17 @@ export default Model.extend({
   givens: attr('string'),
   cells: hasMany('sudoku-cell', {async: true, dependent: 'destroy'}), // an array of cells, with each cell containing a list of actions
 
+  init() {
+    if(!this.givens) {
+      let generatedPuzzle = makepuzzle();
+      this.givens = generatedPuzzle;
+    }
+  },
+
   correct: computed("cells.@each.correct", function() {
     return this.cells.every(cell => cell.correct);
   }),
+
 
   start: async function() {
     if(!this.startedAt && this.get('cells.length') === 0) {
