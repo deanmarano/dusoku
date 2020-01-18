@@ -24,7 +24,7 @@
     "babel-eslint": "^8.0.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-ajax": "^5.0.0",
-    "ember-animated": "^0.6.1",
+    "ember-animated": "^0.10.0",
     "ember-array-contains-helper": "^2.0.0",
     "ember-auto-import": "^1.4.1",
     "ember-cli": "~3.10.0",
