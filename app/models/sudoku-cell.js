@@ -25,7 +25,7 @@ export default Model.extend({
   }),
 
   index: computed('row', 'column', function() {
-    return this.row * this.column;
+    return (this.row * 9) + this.column;
   }),
 
   correct: computed('value', 'guess', function() {

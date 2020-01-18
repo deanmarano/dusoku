@@ -37,6 +37,7 @@ export default Component.extend({
   actions: {
     moveSelection(direction) {
       if(!this.currentlySelectedCell) {
+        this.actions.select.call(this, this.grid[4].findBy('column', 4));
         return;
       }
       let nextCell;
