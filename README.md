@@ -1,22 +1,22 @@
-# dusoku
+# [dusoku](https://dusoku.com)
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+A playable offline sudoku game, written in Ember.
+
+Hosted on [Surge.sh](https://surge.sh/), DNS through [Hover](https://hover.com)
 
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
 
 * [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with npm)
+* [Node.js](https://nodejs.org/) (with yarn)
 * [Ember CLI](https://ember-cli.com/)
-* [Google Chrome](https://google.com/chrome/)
 
 ## Installation
 
 * `git clone <repository-url>` this repository
 * `cd dusoku`
-* `npm install`
+* `yarn`
 
 ## Running / Development
 
