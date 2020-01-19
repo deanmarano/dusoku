@@ -25,7 +25,7 @@ export function puzzleStringToId(puzzleString) {
     replace(/00/g, 'e');
 }
 
-function puzzleToId(puzzle) {
+export function puzzleToId(puzzle) {
   return puzzleStringToId(puzzleToString(puzzle));
 }
 
