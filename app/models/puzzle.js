@@ -16,7 +16,6 @@ export default Model.extend({
     return this.cells.every(cell => cell.correct);
   }),
 
-
   start: async function() {
     if(!this.startedAt && this.get('cells.length') === 0) {
       let cells = [];
