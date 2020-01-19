@@ -7,8 +7,7 @@ export default Route.extend({
   app: storageFor('application-state'),
   async model({ id }) {
     if(id === "new") {
-      let puzzle = this.store.createRecord('puzzle');
-      await puzzle.save();
+      let puzzle = await this.puzzles.create();
       return this.transitionTo("puzzle", puzzle);
     } else {
       return this.store.findRecord('puzzle', id);
