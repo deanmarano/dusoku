@@ -102,6 +102,9 @@ export default Component.extend({
       // if click again
       if(this.get('currentlySelectedCell.index') === cell.index) {
         this.set('currentlySelectedCell', null);
+      } else {
+        this.set('currentlySelectedCell', cell);
+        this.set('currentlySelectedCell.selected', true);
       }
     },
 
