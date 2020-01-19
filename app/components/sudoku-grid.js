@@ -22,6 +22,9 @@ export default Component.extend({
       }
     }, false);
   },
+  willDestroyElement() {
+    this.pause();
+  },
 
   interval() {
     return setInterval(()=> {
