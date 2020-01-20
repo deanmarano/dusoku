@@ -122,6 +122,26 @@
   }
 }
 
+.sudoku-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  justify-items: stretch;
+  align-items: stretch;
+  margin: auto;
+  height: 70vw;
+  width: 70vw;
+
+  .ember-view {
+    border: 1px solid green;
+    font-size: calc(2vw + 10px);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 .template-index {
   display: flex;
   align-items: center;
