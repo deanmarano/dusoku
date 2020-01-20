@@ -6,4 +6,4 @@
   {{/paper-toolbar-tools}}
 {{/paper-toolbar}}
 
-<SudokuGrid @cells={{this.model.cells}} @correct={{this.model.correct}} @puzzleCompleted={{action "puzzleCompleted"}}></SudokuGrid>
+<SudokuGrid @difficulty={{this.model.difficulty}} @puzzle={{this.model}} @cells={{this.model.cells}} @correct={{this.model.correct}} @puzzleCompleted={{action "puzzleCompleted"}}></SudokuGrid>

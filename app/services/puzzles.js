@@ -1,7 +1,7 @@
 import Service, { inject as service } from '@ember/service';
 import { isEmpty } from '@ember/utils';
 import { all } from 'rsvp';
-import { makepuzzle, solvepuzzle } from "sudoku";
+import { ratepuzzle, makepuzzle, solvepuzzle } from "sudoku";
 
 export function puzzleToString(puzzle) {
   let retval = "";
@@ -42,8 +42,9 @@ export default Service.extend({
       let solution = solvepuzzle(generatedPuzzle);
       let puzzle = this.store.createRecord("puzzle", {
         id: puzzleToId(generatedPuzzle),
-        givens: puzzleToId(generatedPuzzle),
-        solution: puzzleToString(solution)
+        givens: puzzleToString(generatedPuzzle),
+        solution: puzzleToString(solution),
+        difficulty: ratepuzzle(generatedPuzzle, 4)
       });
       return puzzle.save();
     }

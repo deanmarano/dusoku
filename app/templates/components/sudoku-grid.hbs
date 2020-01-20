@@ -34,6 +34,11 @@
     </div>
   {{/each}}
 </div>
+  <div class="sudoku-grid">
+    {{#each puzzle.cells as |cell|}}
+      <SudokuCell @cell={{cell}}></SudokuCell>
+    {{/each}}
+  </div>
 
 <div class="buttons">
   <div class="row {{if hintMode "hint"}}">
