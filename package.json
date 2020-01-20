@@ -76,7 +76,7 @@
     "eslint-plugin-node": "^11.0.0",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.4",
-    "sass": "^1.23.7",
+    "sass": "^1.25.0",
     "sudoku": "^0.0.3"
   },
   "engines": {
