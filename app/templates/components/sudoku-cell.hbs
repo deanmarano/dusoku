@@ -1,1 +1,26 @@
-{{cell.value}}
+{{#if cell.displayValue}}
+  <div class="guess">
+    <div class="value">
+      {{cell.displayValue}}
+    </div>
+  </div>
+{{else}}
+  <div class="hints">
+    <div class="hint-row">
+      <span class={{if (array-contains cell.hints 1) "shown"}}>{{t "components.sudoku-grid.1"}}</span>
+      <span class={{if (array-contains cell.hints 2) "shown"}}>{{t "components.sudoku-grid.2"}}</span>
+      <span class={{if (array-contains cell.hints 3) "shown"}}>{{t "components.sudoku-grid.3"}}</span>
+    </div>
+    <div class="hint-row">
+      <span class={{if (array-contains cell.hints 4) "shown"}}>{{t "components.sudoku-grid.4"}}</span>
+      <span class={{if (array-contains cell.hints 5) "shown"}}>{{t "components.sudoku-grid.5"}}</span>
+      <span class={{if (array-contains cell.hints 6) "shown"}}>{{t "components.sudoku-grid.6"}}</span>
+    </div>
+    <div class="hint-row">
+      <span class={{if (array-contains cell.hints 7) "shown"}}>{{t "components.sudoku-grid.7"}}</span>
+      <span class={{if (array-contains cell.hints 8) "shown"}}>{{t "components.sudoku-grid.8"}}</span>
+      <span class={{if (array-contains cell.hints 9) "shown"}}>{{t "components.sudoku-grid.9"}}</span>
+    </div>
+  </div>
+
+{{/if}}
