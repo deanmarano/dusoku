@@ -6,7 +6,7 @@
 .game {
   margin-left: auto;
   margin-right: auto;
-  width: 468px;
+  width: 70vw;
 
   .row {
     display: flex;
@@ -56,21 +56,26 @@
 }
 
 .buttons {
+  margin-top: 10vw;
   margin-left: auto;
   margin-right: auto;
-  width: 468px;
+  width: 70vw;
 
   button {
-    margin: 5px;
-    font-size: 20px;
-    min-width: 30px;
-    height: 30px;
-    padding: 0 4px;
-
     &:disabled {
       background-color: lightgrey;
     }
 
+    &.md-button {
+      min-width: 0;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
   }
 
   .hint button {
@@ -131,15 +136,53 @@
   margin: auto;
   height: 70vw;
   width: 70vw;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
 
-  .ember-view {
-    border: 1px solid green;
+  .sudoku-cell {
+    border-top: 0;
+    border-left: 0;
+    background-color: #fff;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
     font-size: calc(2vw + 10px);
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    padding: 0;
+    justify-content: stretch;
+    align-items: stretch;
+
+    &.given {
+      font-weight: bold;
+    }
+
+    .guess {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &.same-value .guess {
+      border: 2px solid gold;
+    }
+
+    &.error .guess {
+      border: 2px solid red;
+    }
+
+    &.selected {
+      background-color: yellow;
+    }
   }
+
+  .hints {
+    font-size: 2vw;
+    visibility: hidden;
+    .shown {
+      visibility: visible;
+    }
+  }
+
 }
 
 .template-index {
