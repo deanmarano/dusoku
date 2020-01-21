@@ -73,7 +73,8 @@ export default Component.extend({
   ninesFinished: isFinished(9),
 
   actions: {
-    moveSelection(direction) {
+    moveSelection(direction, event) {
+      event.preventDefault();
       if(!this.currentlySelectedCell) {
         this.actions.select.call(this, this.grid[4].findBy('column', 4));
         return;
