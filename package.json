@@ -59,7 +59,7 @@
     "ember-localforage-adapter": "^3.0.0-beta4",
     "ember-math-helpers": "^2.12.1",
     "ember-maybe-import-regenerator": "^0.1.6",
-    "ember-metrics": "^0.13.0",
+    "ember-metrics": "^1.2.0",
     "ember-moment": "^8.0.0",
     "ember-normalize": "^1.0.0",
     "ember-page-title": "^5.0.2",
